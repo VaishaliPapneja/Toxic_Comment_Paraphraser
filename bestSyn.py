@@ -31,6 +31,7 @@ class BestSyn:
 
     def get_datamuse_syn_list(self):
         json_data = api.words(ml=self.word, max=100)
+        print('Json Data is:', json_data)
         word_list = []
         for x in json_data:
             word_list.append(x['word'])
