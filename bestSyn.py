@@ -84,4 +84,3 @@ def __del__(self):
         self.best_choice = False
 
 # %%
-BestSyn('pathetic').pull()[1]
