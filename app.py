@@ -22,6 +22,7 @@ from sklearn.externals import joblib
 # %%
 import nltk
 nltk.download('stopwords')
+nltk.download('punkt')
 
 # %%
 app = Flask(__name__)
