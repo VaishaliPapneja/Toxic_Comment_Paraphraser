@@ -22,17 +22,15 @@ from spacy.lang.en.examples import sentences
 from nltk.corpus import wordnet
 import spacy
 import urllib
-import simplejson as sjson
 nlp = spacy.blank('en')
+from datamuse import datamuse
+api = datamuse.Datamuse()
 
 # %%
 class BestSyn:
 
     def get_datamuse_syn_list(self):
-        url = "https://api.datamuse.com/words?ml=" + self.word
-        response = urllib.request.urlopen(url)
-        data = response.read().decode("utf-8")
-        json_data = sjson.loads(data)
+        json_data = api.words(ml=self.word, max=100)
         word_list = []
         for x in json_data:
             word_list.append(x['word'])
