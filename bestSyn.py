@@ -35,7 +35,7 @@ class BestSyn:
 
     def get_datamuse_syn_list(self):
         json_data = api.words(ml=self.word, max=100)
-        print('Json Data is:', json_data)
+        
         word_list = []
         for x in json_data:
             word_list.append(x['word'])
@@ -49,15 +49,18 @@ class BestSyn:
 
     def pull(self):
         words_list = self.get_datamuse_syn_list()
+        print('words_list is:', words_list)
         nltk_score, score = 0, 0
         for syn_word in words_list:
             use_nltk = True
             nltk_raw_word = wordnet.synsets(self.word)[0]
+            print('nltk_raw_word:', nltk_raw_word)
             nltk_syn_word = wordnet.synsets(syn_word)[0]
-            
+            print('nltk_syn_word: ',nltk_syn_word)
             spacy_raw_word = nlp(self.word.lower())
-            
+            print('spacy_raw_word: ',spacy_raw_word)
             spacy_syn_word = nlp(syn_word.lower())
+            print('spacy_syn_word: ',spacy_syn_word)
 
             
             spacy_score = spacy_raw_word.similarity(spacy_syn_word)
