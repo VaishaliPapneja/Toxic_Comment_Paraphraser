@@ -22,6 +22,9 @@ from sklearn.externals import joblib
 # %%
 import nltk
 nltk.download('stopwords')
+
+# %%
+import nltk
 nltk.download('punkt')
 
 # %%
