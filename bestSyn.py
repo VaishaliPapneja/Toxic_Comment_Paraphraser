@@ -53,10 +53,12 @@ class BestSyn:
         nltk_score, score = 0, 0
         for syn_word in words_list:
             use_nltk = True
-            nltk_raw_word = wordnet.synsets(self.word)[0]
-            print('nltk_raw_word:', nltk_raw_word)
-            nltk_syn_word = wordnet.synsets(syn_word)[0]
-            print('nltk_syn_word: ',nltk_syn_word)
+            try:
+                nltk_raw_word = wordnet.synsets(self.word)[0]
+                nltk_syn_word = wordnet.synsets(syn_word)[0]
+            except:
+                use_nltk = False
+            
             spacy_raw_word = nlp(self.word.lower())
             print('spacy_raw_word: ',spacy_raw_word)
             spacy_syn_word = nlp(syn_word.lower())
