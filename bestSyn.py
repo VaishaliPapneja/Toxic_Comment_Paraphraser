@@ -17,6 +17,10 @@ from nltk.tokenize import word_tokenize
 from gensim.models import word2vec
 
 # %%
+import nltk
+nltk.download('wordnet')
+
+# %%
 from spacy.tokenizer import Tokenizer
 from spacy.lang.en.examples import sentences
 from nltk.corpus import wordnet
