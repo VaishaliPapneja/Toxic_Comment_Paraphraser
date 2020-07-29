@@ -12,7 +12,7 @@ import os
 import nltk
 from nltk.corpus import stopwords 
 from nltk.tokenize import word_tokenize
-
+from bestSyn import *
 from nltk.stem.snowball import SnowballStemmer
 import re
 from flask import Flask,render_template,url_for,request
@@ -21,6 +21,10 @@ import pickle
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.externals import joblib
+
+# %%
+import nltk
+nltk.download('stopwords')
 
 # %%
 app = Flask(__name__)
@@ -71,7 +75,7 @@ def predict():
         message = request.form['message']
         
         data = message
-        toxic_list = []
+        toxic_list, sync_list = [], []
         flag=0
         for word in data.split():
             word_copy = word
@@ -85,7 +89,10 @@ def predict():
                 toxic_list.append(word_copy)
                 flag=1
                 
-    my_prediction = "Your message appears to be "+my_prediction[0]+". Would you like to change the following words - "+ (" ".join(toxic_list)) if flag==1 else "Your message seems to be fine."
+    for word in toxic_list:
+        word_syn = BestSyn(word).pull()[1]
+        sync_list.append(word_syn)
+    my_prediction = "Wait!! Your message appears to be toxic.\n"+"Would you like to change the following words: \n"+ (" ".join(toxic_list)) + " with " + (" ".join(sync_list)) if flag==1 else "Your message seems to be fine."
     return render_template('result.html',prediction = my_prediction)
 
 
