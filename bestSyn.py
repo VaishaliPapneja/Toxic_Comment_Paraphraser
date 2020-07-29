@@ -22,7 +22,7 @@ from spacy.lang.en.examples import sentences
 from nltk.corpus import wordnet
 import spacy
 import urllib
-import json
+import simplejson as sjson
 nlp = spacy.blank('en')
 
 # %%
@@ -32,7 +32,7 @@ class BestSyn:
         url = "https://api.datamuse.com/words?ml=" + self.word
         response = urllib.request.urlopen(url)
         data = response.read().decode("utf-8")
-        json_data = json.loads(data)
+        json_data = sjson.loads(data)
         word_list = []
         for x in json_data:
             word_list.append(x['word'])
@@ -82,5 +82,3 @@ def __del__(self):
         self.word = False
         self.best_score = False
         self.best_choice = False
-
-# %%
