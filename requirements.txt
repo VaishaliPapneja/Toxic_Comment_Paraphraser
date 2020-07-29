@@ -2,3 +2,7 @@ gensim
 pandas
 matplotlib
 seaborn
+nltk
+re
+flask
+pickle
