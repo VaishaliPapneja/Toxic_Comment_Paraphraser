@@ -45,13 +45,11 @@ class BestSyn:
 
     def pull(self):
         words_list = self.get_datamuse_syn_list()
+        nltk_score, score = 0, 0
         for syn_word in words_list:
             use_nltk = True
-            try:
-                nltk_raw_word = wordnet.synsets(self.word)[0]
-                nltk_syn_word = wordnet.synsets(syn_word)[0]
-            except:
-                use_nltk = False
+            nltk_raw_word = wordnet.synsets(self.word)[0]
+            nltk_syn_word = wordnet.synsets(syn_word)[0]
             
             spacy_raw_word = nlp(self.word.lower())
             
