@@ -76,7 +76,7 @@ class BestSyn:
                 score = spacy_score
 
                 
-            if (((nltk_score>0.3) & (nltk_score<0.4)) | ((score>0.3) & (self.best_choice==""))):
+            if (((nltk_score>0.20) & (nltk_score<0.4)) | ((score>0.3) & (self.best_choice==""))):
                 self.best_score = score
                 self.best_choice = syn_word
         return [self.best_score, self.best_choice]
